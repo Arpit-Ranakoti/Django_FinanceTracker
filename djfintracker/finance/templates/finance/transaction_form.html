@@ -1,0 +1,142 @@
+{% extends "layout.html" %}
+{% block title %}Add transaction{% endblock %}
+{% block content %}
+    <div class="min-h-screen flex items-center justify-centre bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-2-md w-full space-y-8 bg-white p-6 rounded-xl shadow-lg">
+            <div class="text-center">
+               <h1 class="text-2xl font-bold text-gray-900">
+                   Add New Transaction
+                </h1>
+                <p class="mt-2 text-sm text-gray-600">
+                    Record your income or expense
+                </p>
+            </div>
+            <form action="" method="post" >
+                {% csrf_token %}
+                <div class="space-y-5">
+                    <div>
+                        <label for="title" 
+                        class="block text-sm text-gray-700 font-medium mb-1">title</label>
+                        <input type="text" 
+                        name="title" id="title"
+                        maxlength="100"
+                        class="appearance-none w-full px-4 py-3 border
+                        border-gray-300 rounded-md shadow-smfocus:outline-none
+                        focus:border-indigo-500
+                        focus:ring-2 focus:ring-indigo-200"
+                            placeholder="enter transaction title" required>
+
+                            {% if form.title.errors %}
+                            {% for error in from.title.errors %}
+                            <p class="text-red-500 text-sm mt-1">
+                                {{error}}
+                            </p>
+                            {% endfor %}
+                            {% endif %}
+                    </div>
+                    
+                    <div>
+                        <label for="amount" 
+                        class="block text-gray-700 font-semibold mb-2">amount</label>
+                        <input type="number" name="amount" id="amount"
+                        class="appearance-none w-full px-4 py-3 border
+                        border-gray-300 rounded-md shadow-sm
+                        focus:outline-none focus:ring-2
+                        focus:ring-indigo-200
+                        focus:border-indigo-500"
+                        placeholder="enter Amount" required>
+                        {% if form.amount.errors %}
+                            {% for error in from.amount.errors %}
+                            <p class="text-red-500 text-sm mt-1">
+                                {{error}}
+                            </p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label for="transaction_type" 
+                        class="block text-gray-700 font-semibold mb-2">Type</label>
+                        <select name="transaction_type"
+                         id="transaction_type"
+                         class="appearance-none w-full px-4 py-3 border
+                        border-gray-300 rounded-md shadow-sm
+                        focus:outline-none focus:ring-2
+                        focus:ring-indigo-200
+                        focus:border-indigo-500">
+                        
+                            <option value="" disabled selected>Select transaction type</option>
+                            <option value="Income" >Income</option>
+                            <option value="Expense" >Expense</option>
+
+                        </select>
+                        {% if form.transaction_type.errors %}
+                            {% for error in from.transaction_type.errors %}
+                            <p class="text-red-500 text-sm mt-1">
+                                {{error}}
+                            </p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label for="date" 
+                        class="block text-sm text-gray-700 font-medium mb-1">Date</label>
+                        <input type="date" 
+                        name="date" id="date"
+                        maxlength="100"
+                        class="appearance-none w-full px-4 py-3 border
+                        border-gray-300 rounded-md shadow-smfocus:outline-none
+                        focus:border-indigo-500
+                        focus:ring-2 focus:ring-indigo-200"
+                        required>
+
+                            {% if form.date.errors %}
+                            {% for error in from.date.errors %}
+                            <p class="text-red-500 text-sm mt-1">
+                                {{error}}
+                            </p>
+                            {% endfor %}
+                            {% endif %}
+                    </div>
+                    <div>
+                        <label for="category" 
+                        class="block text-sm text-gray-700 font-medium mb-1">category</label>
+                        <input type="category" 
+                        name="category" id="category"
+                        maxlength="100"
+                        class="appearance-none w-full px-4 py-3 border
+                        border-gray-300 rounded-md shadow-smfocus:outline-none
+                        focus:border-indigo-500
+                        focus:ring-2 focus:ring-indigo-200"
+                            placeholder="enter category " required>
+
+                            {% if form.title.errors %}
+                            {% for error in from.title.errors %}
+                            <p class="text-red-500 text-sm mt-1">
+                                {{error}}
+                            </p>
+                            {% endfor %}
+                            {% endif %}
+                    </div>
+                    <div class="text-center">
+                        <button 
+                        class="w-full flex justify-center py-3 px-4 border
+                            border-transparent rounded-md shadow-sm text-sm
+                            font-medium text-white bg-indigo-600 hover:bg-indigo-700
+                            focus:outline-none focus:ring-2 focus:ring-offset-2
+                            focus:ring-indigo-500 transaction duration-150
+                            ease-in-out">
+                            Add Transaction 
+                        </button>
+                    </div>
+                </div>
+            </form>
+             <div class="text-center">
+                    <a href="{%url 'dashboard'%}"
+                     class="text-sm text-indigo-600 hover:text-indigo-500 
+                     transaction duration-150 ease-in-out">
+                    Back to dashboard
+                    </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
